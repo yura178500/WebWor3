@@ -1,9 +1,13 @@
-package ru.example.worwebapi.Controllers.Services.impl;
+package ru.example.worwebapi.Services.impl;
 
 
-import ru.example.worwebapi.Controllers.Services.Model.Ingredient;
+import ru.example.worwebapi.Model.Ingredient;
 
 public class IngredientImpl extends Ingredient {
+
+    public IngredientImpl(String nameIngredient, int numberIngredients, String unit, Long idIngredient) {
+        super(nameIngredient, numberIngredients, unit, idIngredient);
+    }
 
     public String getNameIngredient() {
         return null;
