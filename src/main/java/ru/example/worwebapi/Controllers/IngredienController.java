@@ -23,8 +23,8 @@ public class IngredienController {
     }
 //Редактирование ингредиента по id
     @GetMapping("{ingredientId}")
-    public ResponseEntity getIngredient(@PathVariable Long ingredientId) {
-        Ingredient ingredient = ingredientService.getIngredientById(ingredientId);
+    public ResponseEntity getIngredient(@PathVariable Integer ingredientId) {
+        Integer ingredient = ingredientService.getIngredientById();
         if(ingredient == null) {
             return ResponseEntity.notFound().build();
         }
@@ -33,7 +33,7 @@ public class IngredienController {
 //Редактирование ингредиента
     @PutMapping("/api/ingredient/{updateIngredient}")
     public ResponseEntity updateIngredient(@RequestBody Ingredient ingredient) {
-        Ingredient updatedIngredient = ingredientService.updateIngredient(ingredient.getIdIngredient(), ingredient);
+        Ingredient updatedIngredient = ingredientService.updateIngredient(ingredient.getIngredientById(), ingredient);
         return ResponseEntity.ok(updatedIngredient);
     }
     //Получение полного списка ингредиентов.
@@ -48,4 +48,7 @@ public class IngredienController {
     public IngredientService deleteIngredient(@PathVariable IngredientService ingredientId) {
         Ingredient deleteIngredient = ingredientId.deleteIngredient(ingredientId) ;
         return ingredientId;
-}}
+}
+
+
+}

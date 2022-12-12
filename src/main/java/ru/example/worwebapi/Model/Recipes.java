@@ -4,20 +4,13 @@ import lombok.Data;
 
 import java.util.Objects;
 @Data
-public class Recipes {
+public abstract class Recipes {
     String name;
     int cookingTime;
     String ingredients;
     String cookingSteps;
     Long id;
 
-    public Recipes(String name, int cookingTime, String ingredients, String cookingSteps, Long id) {
-        this.name = name;
-        this.cookingTime = cookingTime;
-        this.ingredients = ingredients;
-        this.cookingSteps = cookingSteps;
-        this.id = id;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,4 +74,19 @@ public class Recipes {
         this.name = name;
     }
 
+    public abstract Recipes createRecipes(Recipes recipes);
+
+    public abstract Recipes getRecipesById(Long recipesId);
+
+    public abstract Recipes updateRecipes(Long recipesId, Recipes recipes);
+
+    public abstract Recipes deleteRecipes(Long recipesId);
+
+    public abstract Recipes getCookingTime(Recipes recipes);
+
+    public abstract Recipes getIngredients(Recipes recipes);
+
+    public abstract Recipes getCookingSteps(Recipes recipes);
+
+    public abstract Recipes getName(Recipes recipes);
 }

@@ -1,47 +1,31 @@
 package ru.example.worwebapi.Model;
+
 import lombok.Data;
+import ru.example.worwebapi.Services.IngredientService;
 
 import java.util.Objects;
+
+
 @Data
-public class Ingredient {
+public abstract class Ingredient {
     String nameIngredient;
     int numberIngredients;
     String unit;
-    Long idIngredient;
 
-
-    public Ingredient(String nameIngredient, int numberIngredients, String unit, Long idIngredient) {
-        this.nameIngredient = nameIngredient;
-        this.numberIngredients = numberIngredients;
-        this.unit = unit;
-        this.idIngredient = idIngredient;
-
-    }
-   public String getNameIngredient() {
+    public String getNameIngredient() {
         return nameIngredient;
-    }
-
-    public void setNameIngredient(String nameIngredient) {
-        this.nameIngredient = nameIngredient;
-    }
-
-    public int getNumberIngredients() {
-        return numberIngredients;
     }
 
     public void setNumberIngredients(int numberIngredients) {
         this.numberIngredients = numberIngredients;
     }
+
     public String getUnit() {
         return unit;
     }
 
-    public Long getIdIngredient() {
-        return idIngredient;
-    }
-
-    public void setIdIngredient(Long idIngredient) {
-        this.idIngredient = idIngredient;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     @Override
@@ -50,12 +34,7 @@ public class Ingredient {
                 "nameIngredient='" + nameIngredient + '\'' +
                 ", numberIngredients=" + numberIngredients +
                 ", unit='" + unit + '\'' +
-                ", idIngredient=" + idIngredient +
                 '}';
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
     }
 
     @Override
@@ -63,11 +42,33 @@ public class Ingredient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return numberIngredients == that.numberIngredients && nameIngredient.equals(that.nameIngredient) && unit.equals(that.unit) && idIngredient.equals(that.idIngredient);
+        return numberIngredients == that.numberIngredients && nameIngredient.equals(that.nameIngredient) && unit.equals(that.unit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nameIngredient, numberIngredients, unit, idIngredient);
+        return Objects.hash(nameIngredient, numberIngredients, unit);
     }
+
+    public abstract Ingredient createIngredient(Ingredient ingredient);
+
+    public abstract Integer getIngredientById();
+
+    public abstract Ingredient updateIngredient(Long ingredientId, Ingredient ingredient);
+
+    public abstract Ingredient getIngredientById(Integer ingredientId);
+
+    public abstract Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient);
+
+    public abstract void setIdIngredient(Long idIngredient);
+
+    public abstract void setIdIngredient(Integer idIngredient);
+
+    public abstract Ingredient deleteIngredient(IngredientService ingredientId);
+
+    public abstract Ingredient getNameIngredient(Ingredient ingredient);
+
+    public abstract Ingredient getNumberIngredients(Ingredient ingredient);
+
+    public abstract Ingredient getUnit(Ingredient ingredient);
 }
