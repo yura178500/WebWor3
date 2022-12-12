@@ -16,7 +16,7 @@ public class IngredienController {
         this.ingredientService = ingredientService;
     }
 //Добавление ингредиента.
-    @PostMapping
+    @PostMapping("/api/recipes/{createIngredient}")
     public ResponseEntity createIngredient(@RequestBody Ingredient ingredient) {
         Ingredient createdUser = ingredientService.createIngredient(ingredient);
         return ResponseEntity.ok(createdUser);
@@ -31,7 +31,7 @@ public class IngredienController {
         return ResponseEntity.ok(ingredient);
     }
 //Редактирование ингредиента
-    @PutMapping()
+    @PutMapping("/api/ingredient/{updateIngredient}")
     public ResponseEntity updateIngredient(@RequestBody Ingredient ingredient) {
         Ingredient updatedIngredient = ingredientService.updateIngredient(ingredient.getIdIngredient(), ingredient);
         return ResponseEntity.ok(updatedIngredient);
@@ -44,7 +44,7 @@ public class IngredienController {
     }
 
     //Удаление ингредиента.
-    @DeleteMapping("/recipes/deleteingredient")
+    @DeleteMapping("/recipes/{deleteingredient}")
     public IngredientService deleteIngredient(@PathVariable IngredientService ingredientId) {
         Ingredient deleteIngredient = ingredientId.deleteIngredient(ingredientId) ;
         return ingredientId;

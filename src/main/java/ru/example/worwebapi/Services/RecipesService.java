@@ -11,7 +11,6 @@ public
 class RecipesService {
     private Map<Long, Recipes> recipesMap = new HashMap<>();
     private Long generatedUserId = 1L;
-
     public Recipes createRecipes(Recipes recipes) {
         recipesMap.put(generatedUserId, recipes);
         generatedUserId++;

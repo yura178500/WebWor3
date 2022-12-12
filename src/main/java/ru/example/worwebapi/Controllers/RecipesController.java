@@ -15,7 +15,7 @@ public class RecipesService {
         this.recipesService = recipesService;
     }
 //Добавление рецепта.
-    @PostMapping
+    @PostMapping("/api/recipes/{createRecipes}")
     public ResponseEntity createRecipes(@RequestBody Recipes recipes) {
         Recipes createdRecipes = recipesService.createRecipes(recipes);
         return ResponseEntity.ok(createdRecipes);
@@ -29,8 +29,8 @@ public class RecipesService {
         }
         return ResponseEntity.ok(recipes);
     }
-
-    @PutMapping()
+    //Редактирование рецептов
+    @PutMapping("/api/recipes/{updateRecipes}")
     public ResponseEntity updateRecipes(@RequestBody Recipes recipes) {
         Recipes updatedRecipes = recipesService.updateRecipes(recipes.getId(), recipes);
         return ResponseEntity.ok(updatedRecipes);
@@ -47,7 +47,7 @@ public class RecipesService {
 
 
     //Удаление рецепта по id.
-    @DeleteMapping("/recipes/deleterecipes")
+    @DeleteMapping("/recipes/{deleterecipes}")
     public RecipesService deleteRecipes(@PathVariable RecipesService recipesId) {
         RecipesService deleteRecipes = recipesId.deleteRecipes(recipesId); ;
         return deleteRecipes(recipesId);
@@ -67,6 +67,10 @@ public class RecipesService {
         } else {
             return "Missing Parameters";
         }
+    }@GetMapping("/recipes/")
+    public Recipes recipes() {
+     new Recipes("Салат", 30, "Салат и огурцы", "Всё нарезать", 0L);
+        return recipes();
     }
 }}
 

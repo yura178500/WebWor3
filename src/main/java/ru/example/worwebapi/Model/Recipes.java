@@ -1,14 +1,15 @@
 package ru.example.worwebapi.Model;
 
-import java.util.Objects;
+import lombok.Data;
 
+import java.util.Objects;
+@Data
 public class Recipes {
     String name;
     int cookingTime;
     String ingredients;
     String cookingSteps;
     Long id;
-
 
     public Recipes(String name, int cookingTime, String ingredients, String cookingSteps, Long id) {
         this.name = name;

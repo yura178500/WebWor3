@@ -9,10 +9,10 @@ import java.util.Map;
 @Service
 public class IngredientService {
     private Map<Long, Ingredient> ingredientMap = new HashMap<>();
-    private Long generatedUserId = 1L;
+    private Long generatedIngredientId = 1L;
     public Ingredient createIngredient(Ingredient ingredient) {
-        ingredientMap. put(generatedUserId, ingredient);
-        generatedUserId++;
+        ingredientMap. put(generatedIngredientId, ingredient);
+        generatedIngredientId++;
         return ingredient;
     }
     public Ingredient getIngredientById(Long ingredientId) {

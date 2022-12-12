@@ -1,14 +1,14 @@
 package ru.example.worwebapi.Model;
+import lombok.Data;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-
+@Data
 public class Ingredient {
     String nameIngredient;
     int numberIngredients;
     String unit;
     Long idIngredient;
+
 
     public Ingredient(String nameIngredient, int numberIngredients, String unit, Long idIngredient) {
         this.nameIngredient = nameIngredient;
