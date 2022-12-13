@@ -3,6 +3,7 @@ package ru.example.worwebapi.Model;
 import lombok.Data;
 
 import java.util.Objects;
+
 @Data
 public abstract class Recipes {
     String name;
@@ -39,39 +40,20 @@ public abstract class Recipes {
         return cookingTime;
     }
 
-    public void setCookingTime(int cookingTime) {
-        this.cookingTime = cookingTime;
-    }
-
-    public String getIngredients() {
+       public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public String getCookingSteps() {
+      public String getCookingSteps() {
         return cookingSteps;
     }
 
-    public void setCookingSteps(String cookingSteps) {
-        this.cookingSteps = cookingSteps;
-    }
-
-    public Long getId() {
+       public Long getId() {
         return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public abstract Recipes createRecipes(Recipes recipes);
@@ -90,3 +72,4 @@ public abstract class Recipes {
 
     public abstract Recipes getName(Recipes recipes);
 }
+

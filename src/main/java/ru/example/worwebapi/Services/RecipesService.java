@@ -2,13 +2,13 @@ package ru.example.worwebapi.Services;
 
 import org.springframework.stereotype.Service;
 import ru.example.worwebapi.Model.Recipes;
+import ru.example.worwebapi.impl.RecipesImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public
-class RecipesService extends Recipes {
+public class RecipesService extends RecipesImpl {
     private Map<Long, Recipes> recipesMap = new HashMap<>();
     private Long generatedUserId = 1L;
     @Override

@@ -2,12 +2,13 @@ package ru.example.worwebapi.Services;
 
 import org.springframework.stereotype.Service;
 import ru.example.worwebapi.Model.Ingredient;
+import ru.example.worwebapi.impl.IngredientImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public abstract class IngredientService extends Ingredient {
+public class IngredientService extends IngredientImpl {
     private Map<Integer, Ingredient> ingredientMap = new HashMap<>();
     private Integer generatedIngredientId = 1;
 

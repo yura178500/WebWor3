@@ -42,7 +42,6 @@ public class IngredienController {
     public String IngredienController(@PathVariable String nameIngredient, @PathVariable int numberIngredients,@PathVariable  String unit, @PathVariable Long idIngredient) {
         return "ID: " + idIngredient + ", name: " +  nameIngredient + ", numer: "+ numberIngredients+ ", unit: "+ unit;
     }
-
     //Удаление ингредиента.
     @DeleteMapping("/recipes/{deleteingredient}")
     public IngredientService deleteIngredient(@PathVariable IngredientService ingredientId) {

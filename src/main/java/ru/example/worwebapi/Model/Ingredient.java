@@ -1,6 +1,7 @@
 package ru.example.worwebapi.Model;
 
 import lombok.Data;
+import lombok.Getter;
 import ru.example.worwebapi.Services.IngredientService;
 
 import java.util.Objects;
@@ -48,6 +49,8 @@ public abstract class Ingredient {
     @Override
     public int hashCode() {
         return Objects.hash(nameIngredient, numberIngredients, unit);
+
+
     }
 
     public abstract Ingredient createIngredient(Ingredient ingredient);
