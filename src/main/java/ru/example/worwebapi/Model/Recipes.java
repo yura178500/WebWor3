@@ -6,11 +6,11 @@ import java.util.Objects;
 
 @Data
 public abstract class Recipes {
-    String name;
-    int cookingTime;
-    String ingredients;
-    String cookingSteps;
-    Long id;
+    public  String name;
+    public  int cookingTime;
+    public String ingredients;
+   public String cookingSteps;
+   public Long id;
 
     @Override
     public boolean equals(Object o) {
@@ -56,13 +56,22 @@ public abstract class Recipes {
         return name;
     }
 
-    public abstract Recipes createRecipes(Recipes recipes);
+    public Recipes createRecipes(Recipes recipes) {
+        return recipes;
+    }
 
-    public abstract Recipes getRecipesById(Long recipesId);
+    public Long getRecipesById(Long recipesId) {
+        return recipesId;
+    }
 
-    public abstract Recipes updateRecipes(Long recipesId, Recipes recipes);
+    public Recipes updateRecipes(Long recipesId, Recipes recipes) {
+        return recipes;
+    }
 
-    public abstract Recipes deleteRecipes(Long recipesId);
+    public Long deleteRecipes(Long recipesId) {
+        return recipesId;
+    }
+
 
     public abstract Recipes getCookingTime(Recipes recipes);
 

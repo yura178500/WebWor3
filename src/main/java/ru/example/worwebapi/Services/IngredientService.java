@@ -31,11 +31,6 @@ public class IngredientService extends IngredientImpl {
     }
 
     @Override
-    public void setIdIngredient(Long idIngredient) {
-
-    }
-
-    @Override
     public void setIdIngredient(Integer idIngredient) {
         setIdIngredient(idIngredient);
     }

@@ -18,8 +18,8 @@ public class RecipesService extends RecipesImpl {
         return recipes;
     }
     @Override
-    public Recipes getRecipesById(Long recipesId) {
-        return recipesMap.get(recipesId);
+    public Long getRecipesById(Long recipesId) {
+        return recipesMap.get(recipesId).getId();
     }
     @Override
     public Recipes updateRecipes(Long recipesId, Recipes recipes) {
@@ -27,8 +27,8 @@ public class RecipesService extends RecipesImpl {
         return recipes;
     }
     @Override
-    public Recipes deleteRecipes(Long recipesId) {
-        return recipesMap.remove(recipesId);
+    public Long deleteRecipes(Long recipesId) {
+        return recipesMap.remove(recipesId).getId();
     }
     @Override
     public Recipes getCookingTime(Recipes recipes) {

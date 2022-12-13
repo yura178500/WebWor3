@@ -25,7 +25,7 @@ public class RecipesController {
         //Редактирование рецепта по id.
         @GetMapping("/{recipesId}")
         public ResponseEntity getRecipes(@PathVariable Long recipesId) {
-            Recipes recipes = recipesService.getRecipesById(recipesId);
+            Long recipes = recipesService.getRecipesById(recipesId);
             if (recipes == null) {
                 return ResponseEntity.notFound().build();
             }

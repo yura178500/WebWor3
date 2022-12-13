@@ -15,39 +15,44 @@ public class IngredienController {
     public IngredienController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
-//Добавление ингредиента.
+
+    //Добавление ингредиента.
     @PostMapping("/api/recipes/{createIngredient}")
     public ResponseEntity createIngredient(@RequestBody Ingredient ingredient) {
         Ingredient createdUser = ingredientService.createIngredient(ingredient);
         return ResponseEntity.ok(createdUser);
     }
-//Редактирование ингредиента по id
+
+    //Редактирование ингредиента по id
     @GetMapping("{ingredientId}")
     public ResponseEntity getIngredient(@PathVariable Integer ingredientId) {
         Integer ingredient = ingredientService.getIngredientById();
-        if(ingredient == null) {
+        if (ingredient == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(ingredient);
     }
-//Редактирование ингредиента
+
+    //Редактирование ингредиента
     @PutMapping("/api/ingredient/{updateIngredient}")
     public ResponseEntity updateIngredient(@RequestBody Ingredient ingredient) {
         Ingredient updatedIngredient = ingredientService.updateIngredient(ingredient.getIngredientById(), ingredient);
         return ResponseEntity.ok(updatedIngredient);
     }
+
     //Получение полного списка ингредиентов.
     @GetMapping("/api/ingredient/{id}/{name}")
     @ResponseBody
-    public String IngredienController(@PathVariable String nameIngredient, @PathVariable int numberIngredients,@PathVariable  String unit, @PathVariable Long idIngredient) {
-        return "ID: " + idIngredient + ", name: " +  nameIngredient + ", numer: "+ numberIngredients+ ", unit: "+ unit;
+    public String IngredienController(@PathVariable String nameIngredient, @PathVariable int numberIngredients, @PathVariable String unit, @PathVariable Long idIngredient) {
+        return "ID: " + idIngredient + ", name: " + nameIngredient + ", numer: " + numberIngredients + ", unit: " + unit;
     }
+
     //Удаление ингредиента.
     @DeleteMapping("/recipes/{deleteingredient}")
     public IngredientService deleteIngredient(@PathVariable IngredientService ingredientId) {
-        Ingredient deleteIngredient = ingredientId.deleteIngredient(ingredientId) ;
+        Ingredient deleteIngredient = ingredientId.deleteIngredient(ingredientId);
         return ingredientId;
-}
+    }
 
 
 }

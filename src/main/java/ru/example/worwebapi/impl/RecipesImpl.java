@@ -9,7 +9,7 @@ public class RecipesImpl extends Recipes {
     }
 
     @Override
-    public Recipes getRecipesById(Long recipesId) {
+    public Long getRecipesById(Long recipesId) {
         return null;
     }
 
@@ -19,7 +19,7 @@ public class RecipesImpl extends Recipes {
     }
 
     @Override
-    public Recipes deleteRecipes(Long recipesId) {
+    public Long deleteRecipes(Long recipesId) {
         return null;
     }
 

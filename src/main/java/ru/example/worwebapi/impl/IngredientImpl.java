@@ -30,11 +30,6 @@ public class IngredientImpl extends Ingredient {
     }
 
     @Override
-    public void setIdIngredient(Long idIngredient) {
-
-    }
-
-    @Override
     public void setIdIngredient(Integer idIngredient) {
 
     }

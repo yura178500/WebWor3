@@ -1,7 +1,6 @@
 package ru.example.worwebapi.Model;
 
 import lombok.Data;
-import lombok.Getter;
 import ru.example.worwebapi.Services.IngredientService;
 
 import java.util.Objects;
@@ -9,9 +8,9 @@ import java.util.Objects;
 
 @Data
 public abstract class Ingredient {
-    String nameIngredient;
-    int numberIngredients;
-    String unit;
+   public String nameIngredient;
+   public int numberIngredients;
+   public String unit;
 
     public String getNameIngredient() {
         return nameIngredient;
@@ -53,21 +52,33 @@ public abstract class Ingredient {
 
     }
 
-    public abstract Ingredient createIngredient(Ingredient ingredient);
+    public Ingredient createIngredient(Ingredient ingredient) {
+        return ingredient;
+    }
 
-    public abstract Integer getIngredientById();
+    public Integer getIngredientById() {
+        return getIngredientById();
+    }
 
-    public abstract Ingredient updateIngredient(Long ingredientId, Ingredient ingredient);
+    public Ingredient updateIngredient(Long ingredientId, Ingredient ingredient) {
+        return ingredient;
+    }
 
-    public abstract Ingredient getIngredientById(Integer ingredientId);
+    public Ingredient getIngredientById(Integer ingredientId) {
+        return null;
+    }
 
-    public abstract Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient);
+    public Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient) {
+        return ingredient;
+    }
 
-    public abstract void setIdIngredient(Long idIngredient);
+     public void setIdIngredient(Integer idIngredient) {
 
-    public abstract void setIdIngredient(Integer idIngredient);
+    }
 
-    public abstract Ingredient deleteIngredient(IngredientService ingredientId);
+    public Ingredient deleteIngredient(IngredientService ingredientId) {
+        return ingredientId;
+    }
 
     public abstract Ingredient getNameIngredient(Ingredient ingredient);
 
