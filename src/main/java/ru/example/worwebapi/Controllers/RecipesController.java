@@ -10,7 +10,7 @@ import java.util.Map;
 @RestController
 public class RecipesController {
     public class RecipesService {
-        private final ru.example.worwebapi.Services.RecipesService recipesService;
+       private final ru.example.worwebapi.Services.RecipesService recipesService;
         public RecipesService(ru.example.worwebapi.Services.RecipesService recipesService) {
             this.recipesService = recipesService;
         }

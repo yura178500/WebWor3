@@ -8,9 +8,9 @@ import java.util.Objects;
 
 @Data
 public abstract class Ingredient {
-   public String nameIngredient;
-   public int numberIngredients;
-   public String unit;
+   private String nameIngredient;
+   private int numberIngredients;
+   private String unit;
 
     public String getNameIngredient() {
         return nameIngredient;

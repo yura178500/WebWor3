@@ -8,7 +8,6 @@ public class IngredientImpl extends Ingredient {
     public Ingredient createIngredient(Ingredient ingredient) {
         return null;
     }
-
     @Override
     public Integer getIngredientById() {
         return null;

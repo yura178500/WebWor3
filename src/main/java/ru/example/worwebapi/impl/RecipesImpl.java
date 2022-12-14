@@ -7,7 +7,6 @@ public class RecipesImpl extends Recipes {
     public Recipes createRecipes(Recipes recipes) {
         return null;
     }
-
     @Override
     public Long getRecipesById(Long recipesId) {
         return null;

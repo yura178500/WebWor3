@@ -11,7 +11,6 @@ import ru.example.worwebapi.Services.IngredientService;
 @RestController
 public class IngredienController {
     private final IngredientService ingredientService;
-
     public IngredienController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
