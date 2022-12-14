@@ -11,6 +11,7 @@ import java.util.Map;
 public class RecipesController {
     public class RecipesService {
         private final ru.example.worwebapi.Services.RecipesService recipesService;
+
         public RecipesService(ru.example.worwebapi.Services.RecipesService recipesService) {
             this.recipesService = recipesService;
         }

@@ -26,7 +26,7 @@ public class IngredienController {
     //Редактирование ингредиента по id
     @GetMapping("{ingredientId}")
     public ResponseEntity getIngredient(@PathVariable Integer ingredientId) {
-        Integer ingredient = ingredientService.getIngredientById();
+        Ingredient ingredient = ingredientService.getIngredientById();
         if (ingredient == null) {
             return ResponseEntity.notFound().build();
         }

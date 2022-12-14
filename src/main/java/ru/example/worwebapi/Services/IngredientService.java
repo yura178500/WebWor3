@@ -2,52 +2,28 @@ package ru.example.worwebapi.Services;
 
 import org.springframework.stereotype.Service;
 import ru.example.worwebapi.Model.Ingredient;
-import ru.example.worwebapi.impl.IngredientImpl;
+import ru.example.worwebapi.Services.impl.IngredientImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class IngredientService extends IngredientImpl {
-    private Map<Integer, Ingredient> ingredientMap = new HashMap<>();
-    private Integer generatedIngredientId = 1;
+public abstract class IngredientService {
 
 
-    @Override
-   public Ingredient createIngredient(Ingredient ingredient) {
-        ingredientMap. put(generatedIngredientId, ingredient);
-        generatedIngredientId++;
-        return ingredient;
-    }
+    public abstract Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient);
 
-   @Override
-    public Ingredient getIngredientById(Integer ingredientId) {
-        return ingredientMap.get(ingredientId);
-    }
-    @Override
-    public Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient) {
-        ingredientMap.put(ingredientId, ingredient);
-        return ingredient;
-    }
+    public abstract Ingredient createIngredient(Ingredient ingredient);
 
-    @Override
-    public void setIdIngredient(Integer idIngredient) {
-        setIdIngredient(idIngredient);
-    }
-    @Override
-    public Ingredient deleteIngredient(IngredientService ingredientId) {
-        return ingredientMap.remove(ingredientId);
-    }
-    @Override
-    public Ingredient getNameIngredient(Ingredient ingredient) {
-       return ingredientMap.get(getNameIngredient());
-     }
-    @Override
-    public Ingredient getNumberIngredients(Ingredient ingredient) {
-        return ingredientMap.get(getNameIngredient());
-    }
-    @Override
-    public Ingredient getUnit(Ingredient ingredient) {
-        return ingredientMap.get(getUnit());
-    }
+    public abstract Ingredient getIngredientById();
+
+    public abstract Ingredient deleteIngredient(IngredientService ingredientId);
+
+    protected abstract void saveToFile();
+
+    protected abstract void readFromFile();
 }
+
+
+
+
