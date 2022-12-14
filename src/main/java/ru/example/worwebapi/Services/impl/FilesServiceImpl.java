@@ -15,7 +15,6 @@ public class FilesServiceImpl implements FilesService {
     @Value("${name.of.data.file}")
     private String dataFileName;
 
-
     @Override
     public boolean saveToFile(String json) {
         try {

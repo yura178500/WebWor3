@@ -10,7 +10,6 @@ import java.util.Map;
 @Service
 public abstract class IngredientService {
 
-
     public abstract Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient);
 
     public abstract Ingredient createIngredient(Ingredient ingredient);

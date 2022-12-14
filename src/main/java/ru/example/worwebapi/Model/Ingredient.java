@@ -118,7 +118,6 @@ public  class Ingredient implements Map<Integer, Ingredient> {
     public int hashCode() {
         return Objects.hash(nameIngredient, numberIngredients, unit);
 
-
     }
 
     public Ingredient createIngredient(Ingredient ingredient) {

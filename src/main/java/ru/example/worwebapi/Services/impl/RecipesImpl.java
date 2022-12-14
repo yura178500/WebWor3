@@ -21,7 +21,6 @@ public final class RecipesImpl extends RecipesService {
     public RecipesImpl(FilesService filesService) {
         this.filesService = filesService;
     }
-
     private Map<Long, Recipes> recipesMap = new HashMap<>();
     private Long generatedUserId = 1L;
 

@@ -22,7 +22,6 @@ public class IngredienController {
         Ingredient createdUser = ingredientService.createIngredient(ingredient);
         return ResponseEntity.ok(createdUser);
     }
-
     //Редактирование ингредиента по id
     @GetMapping("{ingredientId}")
     public ResponseEntity getIngredient(@PathVariable Integer ingredientId) {

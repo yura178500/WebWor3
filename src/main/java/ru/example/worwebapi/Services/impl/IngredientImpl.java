@@ -17,7 +17,6 @@ public class IngredientImpl extends IngredientService {
     private final FilesService filesService;
     private Map<Integer, Ingredient> ingredientMap = new HashMap<>();
     private Integer generatedIngredientId = 1;
-
     public IngredientImpl(FilesService filesService) {
         this.filesService = filesService;
     }

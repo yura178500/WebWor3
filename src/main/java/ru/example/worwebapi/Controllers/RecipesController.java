@@ -61,7 +61,6 @@ public class RecipesController {
         public String createRecipesString(@RequestBody ru.example.worwebapi.Model.Recipes recipes) {
             return toString();
         }
-
         @GetMapping("/api/employeeswithmapvariable/{id}/{name}")
         @ResponseBody
         public String getEmployeesByIdAndNameWithMapVariable(@PathVariable Map<String, String> pathVarsMap) {
