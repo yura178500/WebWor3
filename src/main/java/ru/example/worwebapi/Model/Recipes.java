@@ -30,7 +30,6 @@ public class Recipes implements Map<Long, Recipes> {
     public boolean isEmpty() {
         return false;
     }
-
     @Override
     public boolean containsKey(Object key) {
         return false;

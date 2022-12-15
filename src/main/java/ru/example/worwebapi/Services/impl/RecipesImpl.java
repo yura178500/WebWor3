@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public final class RecipesImpl extends RecipesService {
+public final class RecipesImpl implements RecipesService {
     final private FilesService filesService;
     private Long recipesId;
     private Recipes recipes;
@@ -35,7 +35,7 @@ public final class RecipesImpl extends RecipesService {
     }
 
     @Override
-    protected void saveToFile() {
+    public void saveToFile() {
         try {
             String json = new ObjectMapper().writeValueAsString(recipesMap);
             filesService.saveToFile(json);
@@ -43,9 +43,13 @@ public final class RecipesImpl extends RecipesService {
             throw new RuntimeException(e);
         }
     }
+    @PostConstruct
+    private void init1(){
+        readFromFile();
+    }
 
     @Override
-    protected void readFromFile() {
+    public void readFromFile() {
         String json = filesService.readFronFile();
         try {
             recipesMap = new ObjectMapper().readValue(json, new TypeReference<Map<Long, Recipes>>() {

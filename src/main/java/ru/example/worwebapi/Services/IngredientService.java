@@ -7,21 +7,23 @@ import ru.example.worwebapi.Services.impl.IngredientImpl;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
-public abstract class IngredientService {
 
-    public abstract Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient);
+public interface  IngredientService {
 
-    public abstract Ingredient createIngredient(Ingredient ingredient);
+    public  Ingredient updateIngredient(Integer ingredientId, Ingredient ingredient);
 
-    public abstract Ingredient getIngredientById();
+    public  Ingredient createIngredient(Ingredient ingredient);
 
-    public abstract Ingredient deleteIngredient(IngredientService ingredientId);
+    public  Ingredient getIngredientById();
 
-    protected abstract void saveToFile();
+    public  Ingredient deleteIngredient(IngredientService ingredientId);
 
-    protected abstract void readFromFile();
+    void saveToFile();
+
+    void readFromFile();
 }
+
+
 
 
 

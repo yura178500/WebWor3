@@ -7,19 +7,19 @@ import ru.example.worwebapi.Services.impl.RecipesImpl;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
-public abstract class RecipesService {
-    public abstract Recipes deleteRecipes(Long recipesId);
 
-    protected abstract void saveToFile();
+public interface  RecipesService {
+    public  Recipes deleteRecipes(Long recipesId);
 
-    protected abstract void readFromFile();
+    void saveToFile();
 
-    public abstract Recipes createRecipes(Recipes recipes);
+    void readFromFile();
 
-    public abstract Long getRecipesById(Long recipesId);
+    public  Recipes createRecipes(Recipes recipes);
 
-    public abstract Recipes updateRecipes(Long recipesId, Recipes recipes);
+    public  Long getRecipesById(Long recipesId);
+
+    public  Recipes updateRecipes(Long recipesId, Recipes recipes);
 }
 
 

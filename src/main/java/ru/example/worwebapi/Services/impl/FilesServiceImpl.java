@@ -19,18 +19,17 @@ public class FilesServiceImpl implements FilesService {
     public boolean saveToFile(String json) {
         try {
             cleanDataFile();
-            Files.writeString(Path.of(dataFilePath,dataFileName), json);
+            Files.writeString(Path.of(dataFilePath, dataFileName), json);
             return true;
         } catch (IOException e) {
             return false;
         }
-
     }
 
     @Override
     public String readFronFile() {
         try {
-            return Files.readString(Path.of(dataFilePath,dataFileName));
+            return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +37,7 @@ public class FilesServiceImpl implements FilesService {
 
     private boolean cleanDataFile() {
         try {
-            Path path = Path.of(dataFilePath,dataFileName);
+            Path path = Path.of(dataFilePath, dataFileName);
             Files.deleteIfExists(path);
             Files.createFile(path);
             return false;

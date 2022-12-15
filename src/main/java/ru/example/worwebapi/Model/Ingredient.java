@@ -93,7 +93,6 @@ public  class Ingredient implements Map<Integer, Ingredient> {
     public Set<Integer> keySet() {
         return null;
     }
-
     @NotNull
     @Override
     public Collection<Ingredient> values() {

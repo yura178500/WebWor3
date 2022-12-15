@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class IngredientImpl extends IngredientService {
+public class IngredientImpl implements IngredientService {
     private final FilesService filesService;
     private Map<Integer, Ingredient> ingredientMap = new HashMap<>();
     private Integer generatedIngredientId = 1;
@@ -57,7 +57,7 @@ private void init(){
         return null;
     }
     @Override
-    protected void saveToFile() {
+    public void saveToFile() {
         try {
             String json = new ObjectMapper().writeValueAsString(ingredientMap);
             filesService.saveToFile(json);
@@ -67,7 +67,7 @@ private void init(){
 
     }
     @Override
-    protected void readFromFile() {
+    public void readFromFile() {
         String json = filesService.readFronFile();
         try {
             ingredientMap = new ObjectMapper().readValue(json, new TypeReference<Map<Integer, Ingredient>>() {
