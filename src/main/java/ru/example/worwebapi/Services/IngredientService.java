@@ -19,7 +19,6 @@ public interface  IngredientService {
     public  Ingredient deleteIngredient(IngredientService ingredientId);
 
     void saveToFile();
-
     void readFromFile();
 }
 

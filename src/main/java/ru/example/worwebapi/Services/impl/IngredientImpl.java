@@ -26,7 +26,6 @@ public class IngredientImpl implements IngredientService {
         generatedIngredientId++;
         return ingredient;
     }
-
     @Override
     public Ingredient getIngredientById() {
         for (Ingredient ingredient : ingredientMap.values()) {

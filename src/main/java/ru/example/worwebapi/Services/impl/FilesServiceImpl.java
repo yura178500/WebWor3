@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.example.worwebapi.Services.FilesService;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,7 +26,10 @@ public class FilesServiceImpl implements FilesService {
             return false;
         }
     }
-
+    @Override
+    public File getDataFile(){
+        return new File(dataFilePath + "/" + dataFileName);
+    }
     @Override
     public String readFronFile() {
         try {
@@ -34,8 +38,8 @@ public class FilesServiceImpl implements FilesService {
             throw new RuntimeException(e);
         }
     }
-
-    private boolean cleanDataFile() {
+@Override
+    public boolean cleanDataFile() {
         try {
             Path path = Path.of(dataFilePath, dataFileName);
             Files.deleteIfExists(path);
@@ -44,5 +48,13 @@ public class FilesServiceImpl implements FilesService {
         } catch (IOException e) {
             return false;
         }
+    }@Override
+    public Path createTempFile(String suffix)  {
+        try {
+         return  Files.createTempFile(Path.of(dataFilePath),"tempFile",suffix);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

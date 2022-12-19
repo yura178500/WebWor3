@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import ru.example.worwebapi.Model.Recipes;
 import ru.example.worwebapi.Services.impl.RecipesImpl;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.Month;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +23,8 @@ public interface  RecipesService {
     public  Long getRecipesById(Long recipesId);
 
     public  Recipes updateRecipes(Long recipesId, Recipes recipes);
+
+    Path createMonthReport(Month month) throws IOException;
 }
 
 

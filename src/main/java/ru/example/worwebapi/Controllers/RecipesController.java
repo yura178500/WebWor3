@@ -1,10 +1,17 @@
 package ru.example.worwebapi.Controllers;
 
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.example.worwebapi.Model.Recipes;
 
-import java.util.Map;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Month;
 
 @RequestMapping("/recipes")
 @RestController
@@ -60,19 +67,28 @@ public class RecipesController {
         public String createRecipesString(@RequestBody ru.example.worwebapi.Model.Recipes recipes) {
             return toString();
         }
-        @GetMapping("/api/employeeswithmapvariable/{id}/{name}")
-        @ResponseBody
-        public String getEmployeesByIdAndNameWithMapVariable(@PathVariable Map<String, String> pathVarsMap) {
-            String id = pathVarsMap.get("id");
-            String name = pathVarsMap.get("name");
-            if (id != null && name != null) {
-                return "ID: " + id + ", name: " + name;
-            } else {
-                return "Missing Parameters";
+        @GetMapping("byMonth/{month}")
+        public ResponseEntity<Object> getMonth(@PathVariable Month month){
+            try {
+                Path path = recipesService.createMonthReport(month);
+                if (Files.size(path)==0){
+
+                    InputStreamResource resource = new InputStreamResource(new FileInputStream(path.toFile()));
+                    return ResponseEntity.ok()
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .contentLength(Files.size(path))
+                            .header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\"" + month + "raport.text\"")
+                            .body(resource);
+                }else{
+                    return ResponseEntity.noContent().build();
+
+            }} catch (IOException e) {
+                e.printStackTrace();
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
-        }
+
     }
-}
+}}
 
 
 

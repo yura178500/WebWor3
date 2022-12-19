@@ -98,7 +98,6 @@ public  class Ingredient implements Map<Integer, Ingredient> {
     public Collection<Ingredient> values() {
         return null;
     }
-
     @NotNull
     @Override
     public Set<Entry<Integer, Ingredient>> entrySet() {

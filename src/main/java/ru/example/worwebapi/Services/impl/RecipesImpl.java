@@ -9,7 +9,14 @@ import ru.example.worwebapi.Model.Recipes;
 import ru.example.worwebapi.Services.FilesService;
 import ru.example.worwebapi.Services.RecipesService;
 
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.time.Month;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
@@ -43,6 +50,7 @@ public final class RecipesImpl implements RecipesService {
             throw new RuntimeException(e);
         }
     }
+
     @PostConstruct
     private void init1(){
         readFromFile();
@@ -59,6 +67,7 @@ public final class RecipesImpl implements RecipesService {
         }
 
     }
+
 
     @Override
     public Recipes createRecipes(Recipes recipes) {
@@ -91,5 +100,20 @@ public final class RecipesImpl implements RecipesService {
         saveToFile();
         return recipes;
     }
+@Override
+    public Path createMonthReport(Month month) throws IOException {
+        LinkedHashMap<Long, Recipes> monthTransact = recipesMap.getOrDefault(month, new LinkedHashMap<>());
+        Path path = filesService.createTempFile("monthReport");
+        for (Recipes recipesMap: monthTransact.values());
+        try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)){
+            writer.append(recipesMap.getClass() + ":" + recipesMap.get(toString()));
+            writer.append("\n");
 
+        }return path;
+    }
 }
+
+
+
+
+
