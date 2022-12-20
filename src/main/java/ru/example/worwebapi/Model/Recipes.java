@@ -15,11 +15,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Recipes implements Map<Long, Recipes> {
-    private   String name;
-    private   int cookingTime;
+    private String name;
+    private int cookingTime;
     private String ingredients;
-   private String cookingSteps;
-   private Long recipesId;
+    private String cookingSteps;
+    private Long recipesId;
+
+    public Recipes(Long valueOf, Integer valueOf1, String s) {
+    }
 
     @Override
     public int size() {
@@ -30,6 +33,7 @@ public class Recipes implements Map<Long, Recipes> {
     public boolean isEmpty() {
         return false;
     }
+
     @Override
     public boolean containsKey(Object key) {
         return false;
@@ -39,10 +43,12 @@ public class Recipes implements Map<Long, Recipes> {
     public boolean containsValue(Object value) {
         return false;
     }
+
     @Override
     public Recipes get(Object key) {
         return null;
     }
+
     @Nullable
     @Override
     public Recipes put(Long key, Recipes value) {
@@ -110,17 +116,18 @@ public class Recipes implements Map<Long, Recipes> {
         return cookingTime;
     }
 
-       public String getIngredients() {
+    public String getIngredients() {
         return ingredients;
     }
 
-      public String getCookingSteps() {
+    public String getCookingSteps() {
         return cookingSteps;
     }
 
-       public Long getId() {
+    public Long getId() {
         return recipesId;
-    }}
+    }
+}
 
 
 

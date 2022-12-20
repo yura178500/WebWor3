@@ -5,10 +5,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.example.worwebapi.Model.Recipes;
+import ru.example.worwebapi.Services.RecipesService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Month;
@@ -67,28 +70,45 @@ public class RecipesController {
         public String createRecipesString(@RequestBody ru.example.worwebapi.Model.Recipes recipes) {
             return toString();
         }
+
         @GetMapping("byMonth/{month}")
-        public ResponseEntity<Object> getMonth(@PathVariable Month month){
+        public ResponseEntity<Object> getMonth(@PathVariable Month month) {
             try {
                 Path path = recipesService.createMonthReport(month);
-                if (Files.size(path)==0){
+                if (Files.size(path) == 0) {
 
                     InputStreamResource resource = new InputStreamResource(new FileInputStream(path.toFile()));
                     return ResponseEntity.ok()
                             .contentType(MediaType.APPLICATION_JSON)
                             .contentLength(Files.size(path))
-                            .header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\"" + month + "raport.text\"")
+                            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + month + "raport.text\"")
                             .body(resource);
-                }else{
+                } else {
                     return ResponseEntity.noContent().build();
 
-            }} catch (IOException e) {
+                }
+            } catch (IOException e) {
                 e.printStackTrace();
                 return ResponseEntity.internalServerError().body(e.getMessage());
             }
 
+        }
     }
-}}
+
+    @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Object> addRecipesFromFile(@RequestParam MultipartFile file) {
+        try (InputStream stream = file.getInputStream()) {
+            ru.example.worwebapi.Services.RecipesService recipesService = null;
+            recipesService.addRecipesFromInputStream(stream);
+            return ResponseEntity.ok().build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
+    }
+
+}
 
 
 

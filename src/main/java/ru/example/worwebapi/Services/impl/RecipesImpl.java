@@ -4,17 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import ru.example.worwebapi.Model.Recipes;
 import ru.example.worwebapi.Services.FilesService;
 import ru.example.worwebapi.Services.RecipesService;
 
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.Month;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -28,15 +29,14 @@ public final class RecipesImpl implements RecipesService {
     public RecipesImpl(FilesService filesService) {
         this.filesService = filesService;
     }
+
     private Map<Long, Recipes> recipesMap = new HashMap<>();
     private Long generatedUserId = 1L;
 
     @Override
     public Recipes deleteRecipes(Long recipesId) {
         for (Map<Long, Recipes> recipesMap : recipesMap.values()) {
-            if (recipesMap.containsKey(recipesId)) {
-                recipesMap.remove(recipesId);
-            }
+            recipesMap.remove(recipesId);
         }
         return null;
     }
@@ -52,7 +52,7 @@ public final class RecipesImpl implements RecipesService {
     }
 
     @PostConstruct
-    private void init1(){
+    private void init1() {
         readFromFile();
     }
 
@@ -100,20 +100,32 @@ public final class RecipesImpl implements RecipesService {
         saveToFile();
         return recipes;
     }
-@Override
+
+    @Override
     public Path createMonthReport(Month month) throws IOException {
         LinkedHashMap<Long, Recipes> monthTransact = recipesMap.getOrDefault(month, new LinkedHashMap<>());
         Path path = filesService.createTempFile("monthReport");
-        for (Recipes recipesMap: monthTransact.values());
-        try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)){
+        for (Recipes recipesMap : monthTransact.values()) ;
+        try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
             writer.append(recipesMap.getClass() + ":" + recipesMap.get(toString()));
             writer.append("\n");
 
-        }return path;
+        }
+        return path;
     }
-}
 
+    @Override
+    public void addRecipesFromInputStream(InputStream inputStream) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)) {
+            String line = reader.readLine();
 
-
-
+            {
+                while (line != null) {
+                    String[] array = StringUtils.split(line, "|");
+                    Recipes recipes = new Recipes(Long.valueOf(array[0]), Integer.valueOf(array[1]), array[2]);
+                    createRecipes(recipes);
+                }
+            }
+        }
+    }
 

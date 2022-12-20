@@ -1,16 +1,29 @@
 package ru.example.worwebapi.Controllers;
 
 
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.example.worwebapi.Model.Ingredient;
 import ru.example.worwebapi.Services.IngredientService;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Month;
+import java.util.Map;
 
 
 @RequestMapping("ingredient")
 @RestController
 public class IngredienController {
     private final IngredientService ingredientService;
+
     public IngredienController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
@@ -53,5 +66,56 @@ public class IngredienController {
         return ingredientId;
     }
 
+    @GetMapping("byMonth/{month}")
+    public ResponseEntity<Object> getMonth(@PathVariable Month month) {
+        try {
+            Path path = ingredientService.createMonthReport(month);
+            if (Files.size(path) == 0) {
+
+                InputStreamResource resource = new InputStreamResource(new FileInputStream(path.toFile()));
+                return ResponseEntity.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentLength(Files.size(path))
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + month + "raport.text\"")
+                        .body(resource);
+            } else {
+                return ResponseEntity.noContent().build();
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
+    }
+
+    @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Object> addIngredientFromFile(@RequestParam MultipartFile file) {
+        try (InputStream stream = file.getInputStream()) {
+            ru.example.worwebapi.Services.IngredientService ingredientService = null;
+            ingredientService.addIngredientFromInputStream(stream);
+            return ResponseEntity.ok().build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
+    }
+
+    @GetMapping("/ingredients/{ingredientId}")
+    public Ingredient getIngredient(@PathVariable Long ingredientId) {
+        return ingredientService.getIngredientById(ingredientId);
+    }
+
+    @GetMapping("/ingredients/all")
+    public Map<Long, Ingredient> getAllIngredients() {
+        return ingredientService.getAllIngredients();
+    }
+
+
+    @PostMapping("/add")
+    public void addIngredient(@PathVariable Long ingredientId, @RequestBody Ingredient ingredient) {
+        ingredientService.addIngredient(ingredient);
+    }
 
 }

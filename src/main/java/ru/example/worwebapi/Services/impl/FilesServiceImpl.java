@@ -26,10 +26,12 @@ public class FilesServiceImpl implements FilesService {
             return false;
         }
     }
+
     @Override
-    public File getDataFile(){
+    public File getDataFile() {
         return new File(dataFilePath + "/" + dataFileName);
     }
+
     @Override
     public String readFronFile() {
         try {
@@ -38,7 +40,8 @@ public class FilesServiceImpl implements FilesService {
             throw new RuntimeException(e);
         }
     }
-@Override
+
+    @Override
     public boolean cleanDataFile() {
         try {
             Path path = Path.of(dataFilePath, dataFileName);
@@ -48,10 +51,12 @@ public class FilesServiceImpl implements FilesService {
         } catch (IOException e) {
             return false;
         }
-    }@Override
-    public Path createTempFile(String suffix)  {
+    }
+
+    @Override
+    public Path createTempFile(String suffix) {
         try {
-         return  Files.createTempFile(Path.of(dataFilePath),"tempFile",suffix);
+            return Files.createTempFile(Path.of(dataFilePath), "tempFile", suffix);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

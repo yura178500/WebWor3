@@ -12,10 +12,13 @@ import java.util.Set;
 
 
 @Data
-public  class Ingredient implements Map<Integer, Ingredient> {
-   private String nameIngredient;
-   private int numberIngredients;
-   private String unit;
+public class Ingredient implements Map<Integer, Ingredient> {
+    private String nameIngredient;
+    private int numberIngredients;
+    private String unit;
+
+    public Ingredient(String valueOf, Integer valueOf1, String s) {
+    }
 
     public String getNameIngredient() {
         return nameIngredient;
@@ -93,11 +96,13 @@ public  class Ingredient implements Map<Integer, Ingredient> {
     public Set<Integer> keySet() {
         return null;
     }
+
     @NotNull
     @Override
     public Collection<Ingredient> values() {
         return null;
     }
+
     @NotNull
     @Override
     public Set<Entry<Integer, Ingredient>> entrySet() {
@@ -138,7 +143,7 @@ public  class Ingredient implements Map<Integer, Ingredient> {
         return ingredient;
     }
 
-     public void setIdIngredient(Integer idIngredient) {
+    public void setIdIngredient(Integer idIngredient) {
 
     }
 

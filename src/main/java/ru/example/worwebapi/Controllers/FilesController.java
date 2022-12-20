@@ -16,7 +16,7 @@ import java.rmi.RemoteException;
 @RestController
 @RequestMapping("/files")
 public class FilesController {
-    private  final FilesService filesServices;
+    private final FilesService filesServices;
 
     public FilesController(FilesService filesServices) {
         this.filesServices = filesServices;
@@ -25,21 +25,22 @@ public class FilesController {
     @GetMapping("/export")
     public ResponseEntity<InputStreamResource> dowloadDataFile() throws FileNotFoundException {
         File file = filesServices.getDataFile();
-        if (file.exists()){
+        if (file.exists()) {
             InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
             return ResponseEntity.ok()
                     .contentType(MediaType.APPLICATION_JSON)
                     .contentLength(file.length())
-                    .header(HttpHeaders.CONTENT_DISPOSITION,"attachment;filename=\"Log.json\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"Log.json\"")
                     .body(resource);
 
-        }else{
+        } else {
             return ResponseEntity.noContent().build();
 
         }
     }
-    @PostMapping(value = "/import",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void>uploadFile(@RequestParam MultipartFile file) throws IOException {
+
+    @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> uploadFile(@RequestParam MultipartFile file) throws IOException {
         filesServices.cleanDataFile();
         File dataFile = filesServices.getDataFile();
         try (BufferedInputStream bis = new BufferedInputStream(file.getInputStream());
@@ -53,4 +54,5 @@ public class FilesController {
             e.printStackTrace();
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }}
+    }
+}

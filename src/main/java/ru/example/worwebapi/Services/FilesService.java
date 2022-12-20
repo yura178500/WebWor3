@@ -12,5 +12,6 @@ public interface FilesService {
 
     boolean cleanDataFile();
 
+
     Path createTempFile(String suffix);
 }
